@@ -9,11 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.master.glideimageview.GlideImageView;
-
-import junit.framework.Test;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,8 +48,6 @@ public class QuestFragment extends android.support.v4.app.Fragment {
         questImg = (GlideImageView) view.findViewById(R.id.quest_image);
         characterImg = (GlideImageView) view.findViewById(R.id.character_image);
 
-        //questDescription.setText(getDetail());
-
         id =  getArguments().getInt("id", 0);
         questImgKey = getArguments().getString("imgKey");
         questDescriptionKey = getArguments().getString("descKey");
@@ -89,11 +83,4 @@ public class QuestFragment extends android.support.v4.app.Fragment {
 
     }
 
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
 }

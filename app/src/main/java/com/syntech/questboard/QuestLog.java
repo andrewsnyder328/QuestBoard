@@ -1,6 +1,5 @@
 package com.syntech.questboard;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuestLog {

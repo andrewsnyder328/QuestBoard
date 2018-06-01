@@ -6,9 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.master.glideimageview.GlideImageView;
-
 import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
@@ -52,7 +50,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
                     Intent intent = new Intent(v.getContext(), Quests.class);
                     int i = getAdapterPosition()+1;
                     intent.putExtra("id", i);
-                    //Toast.makeText(v.getContext(), String.valueOf(i), Toast.LENGTH_SHORT).show();
                     v.getContext().startActivity(intent);
                 }
             });

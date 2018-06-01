@@ -1,7 +1,5 @@
 package com.syntech.questboard;
 
-import java.util.ArrayList;
-
 public class Quest {
 
     private int id;

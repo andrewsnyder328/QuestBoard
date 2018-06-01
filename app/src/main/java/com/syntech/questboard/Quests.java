@@ -5,22 +5,14 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +26,6 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
     private LinearLayout[] mDots;
     private static ViewPager viewPager;
     private List<String> listItem = new ArrayList<>();
-    private List<Character> characters = new ArrayList<>();
     private static QuestLog questLog;
     private FragmentAdapter fragmentAdapter;
     private int id;

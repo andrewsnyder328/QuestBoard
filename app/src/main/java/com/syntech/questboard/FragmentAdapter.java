@@ -1,25 +1,12 @@
 package com.syntech.questboard;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FragmentAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
     private Context ctx;
     private QuestLog questLog;
-    private List<Character> characters = new ArrayList<>();
     private android.support.v4.app.Fragment[] fragments;
 
     public FragmentAdapter(Context ctx, FragmentManager fm, QuestLog questLog) {
@@ -31,7 +18,7 @@ public class FragmentAdapter extends android.support.v4.app.FragmentStatePagerAd
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
-        android.support.v4.app.Fragment fragment = null;
+        android.support.v4.app.Fragment fragment;
 
         if (position == 0){
             KingdomFragment kingdomFragment = new KingdomFragment();
@@ -48,8 +35,6 @@ public class FragmentAdapter extends android.support.v4.app.FragmentStatePagerAd
 
             QuestFragment questFragment = new QuestFragment();
             questFragment.setArguments(bundle);
-            //questFragment.setDetail(questLog.getQuests().get(position-1).getDescription());
-            //questFragment.setDetail(characters.get(position).getName());
             fragment = questFragment;
         }
 
