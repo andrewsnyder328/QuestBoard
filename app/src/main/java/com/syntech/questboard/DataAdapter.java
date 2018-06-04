@@ -11,9 +11,9 @@ import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
 
-    private List<Kingdom> kingdoms;
+    private List<KingdomModel> kingdoms;
 
-    public DataAdapter(List<Kingdom> kingdoms) {
+    public DataAdapter(List<KingdomModel> kingdoms) {
         this.kingdoms = kingdoms;
     }
 
@@ -47,7 +47,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), Quests.class);
+                    Intent intent = new Intent(v.getContext(), QuestActivity.class);
                     int i = getAdapterPosition()+1;
                     intent.putExtra("id", i);
                     v.getContext().startActivity(intent);

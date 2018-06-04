@@ -10,7 +10,9 @@ import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -19,14 +21,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class QuestActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
     private LinearLayout indicator;
     private int mDotCount;
     private LinearLayout[] mDots;
     private static ViewPager viewPager;
     private List<String> listItem = new ArrayList<>();
-    private static QuestLog questLog;
+    private static QuestLogModel questLog;
     private FragmentAdapter fragmentAdapter;
     private int id;
 
@@ -34,8 +36,9 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        questLog = new QuestLog();
+        questLog = new QuestLogModel();
         setContentView(R.layout.activity_quests);
+        setActionBarTitle("");
 
         indicator = (LinearLayout) findViewById(R.id.indicators);
         viewPager = (ViewPager) findViewById(R.id.viewPager_itemList);
@@ -57,6 +60,7 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
         fragmentAdapter = new FragmentAdapter(this, getSupportFragmentManager(), questLog);
         viewPager.setAdapter(fragmentAdapter);
         viewPager.setCurrentItem(0);
+        viewPager.setOffscreenPageLimit(questLog.getQuests().size());
         viewPager.setOnPageChangeListener(this);
         setUiPageViewController();
     }
@@ -67,11 +71,11 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<QuestLog> call = request.getQuests(id);
-        call.enqueue(new Callback<QuestLog>() {
+        Call<QuestLogModel> call = request.getQuests(id);
+        call.enqueue(new Callback<QuestLogModel>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(Call<QuestLog> call, Response<QuestLog> response) {
+            public void onResponse(Call<QuestLogModel> call, Response<QuestLogModel> response) {
 
                 questLog = response.body();
                 setData();
@@ -79,7 +83,7 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
             }
 
             @Override
-            public void onFailure(Call<QuestLog> call, Throwable t) {
+            public void onFailure(Call<QuestLogModel> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
         });
@@ -93,7 +97,8 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
 
         for(int i=0; i<mDotCount; i++){
             mDots[i] = new LinearLayout(this);
-            mDots[i].setBackgroundResource(R.drawable.ic_assignment_black_24dp);
+            //quest icon made by Freepik from www.flaticon.com
+            mDots[i].setBackgroundResource(R.drawable.ic_quest);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayoutCompat.LayoutParams.WRAP_CONTENT,
@@ -105,9 +110,17 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
             mDots[i].getLayoutParams().height = 100;
             mDots[i].getLayoutParams().width = 100;
             mDots[i].setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+            final int finalI = i;
+            mDots[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollTo(finalI);
+                }
+            });
         }
 
-        mDots[0].setBackgroundResource(R.drawable.ic_home_black_24dp);
+        //castle icon made by Freepik from www.flaticon.com
+        mDots[0].setBackgroundResource(R.drawable.ic_castle);
         mDots[0].setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
         mDots[0].getLayoutParams().height = 150;
         mDots[0].getLayoutParams().width = 150;
@@ -142,7 +155,7 @@ public class Quests extends AppCompatActivity implements ViewPager.OnPageChangeL
         getSupportActionBar().setTitle(title);
     }
 
-    public static List<Quest> getQuests(){
+    public static List<QuestModel> getQuests(){
         return questLog.getQuests();
     }
 

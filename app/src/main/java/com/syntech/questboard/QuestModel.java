@@ -1,12 +1,12 @@
 package com.syntech.questboard;
 
-public class Quest {
+public class QuestModel {
 
     private int id;
     private String name;
     private String description;
     private String image;
-    private Giver giver;
+    private GiverModel giver;
 
     public int getId() {
         return id;
@@ -24,7 +24,7 @@ public class Quest {
         return image;
     }
 
-    public Giver getGiver() {
+    public GiverModel getGiver() {
         return giver;
     }
 

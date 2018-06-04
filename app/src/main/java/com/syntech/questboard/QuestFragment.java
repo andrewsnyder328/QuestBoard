@@ -24,8 +24,7 @@ public class QuestFragment extends android.support.v4.app.Fragment {
     private TextView characterProfession;
     private GlideImageView questImg;
     private GlideImageView characterImg;
-    private String detail;
-    private Character character;
+    private CharacterModel character;
     private int id;
     private String questImgKey;
     private String questDescriptionKey;
@@ -33,8 +32,6 @@ public class QuestFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_quest, container, false);
-
-
     }
 
     @Override
@@ -60,27 +57,24 @@ public class QuestFragment extends android.support.v4.app.Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
-        Call<Character> call = request.getCharacter(id);
-        call.enqueue(new Callback<Character>() {
+        Call<CharacterModel> call = request.getCharacter(id);
+        call.enqueue(new Callback<CharacterModel>() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void onResponse(Call<Character> call, Response<Character> response) {
+            public void onResponse(Call<CharacterModel> call, Response<CharacterModel> response) {
 
                 character = response.body();
                 characterName.setText(character.getName());
                 characterProfession.setText(character.getProfession());
                 characterBio.setText(character.getBio());
                 characterImg.loadImageUrl(character.getImage());
-
             }
 
             @Override
-            public void onFailure(Call<Character> call, Throwable t) {
+            public void onFailure(Call<CharacterModel> call, Throwable t) {
                 Log.d("Error",t.getMessage());
             }
+
         });
-
-
     }
-
 }

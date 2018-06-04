@@ -2,14 +2,14 @@ package com.syntech.questboard;
 
 import java.util.List;
 
-public class QuestLog {
+public class QuestLogModel {
 
     private int id;
     private String name;
     private String image;
     private String climate;
     private int population;
-    private List<Quest> quests;
+    private List<QuestModel> quests;
 
     public String getName() {
         return name;
@@ -27,7 +27,7 @@ public class QuestLog {
         return population;
     }
 
-    public List<Quest> getQuests() {
+    public List<QuestModel> getQuests() {
         return quests;
     }
 }

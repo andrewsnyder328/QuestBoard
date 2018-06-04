@@ -6,10 +6,10 @@ import android.support.v4.app.FragmentManager;
 
 public class FragmentAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
     private Context ctx;
-    private QuestLog questLog;
+    private QuestLogModel questLog;
     private android.support.v4.app.Fragment[] fragments;
 
-    public FragmentAdapter(Context ctx, FragmentManager fm, QuestLog questLog) {
+    public FragmentAdapter(Context ctx, FragmentManager fm, QuestLogModel questLog) {
         super(fm);
         this.ctx = ctx;
         this.questLog = questLog;

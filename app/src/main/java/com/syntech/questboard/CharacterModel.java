@@ -1,6 +1,6 @@
 package com.syntech.questboard;
 
-public class Character {
+public class CharacterModel {
 
     private int id;
     private String name;

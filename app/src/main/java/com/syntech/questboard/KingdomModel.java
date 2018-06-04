@@ -1,6 +1,6 @@
 package com.syntech.questboard;
 
-public class Kingdom {
+public class KingdomModel {
 
     private String name;
     private String image;

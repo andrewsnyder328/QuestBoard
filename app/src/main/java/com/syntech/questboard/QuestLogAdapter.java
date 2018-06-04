@@ -9,9 +9,9 @@ import java.util.List;
 
 public class QuestLogAdapter extends RecyclerView.Adapter<QuestLogAdapter.ViewHolder>{
 
-    private List<Quest> quests;
+    private List<QuestModel> quests;
 
-    public QuestLogAdapter(List<Quest> quests) {
+    public QuestLogAdapter(List<QuestModel> quests) {
         this.quests = quests;
     }
 
@@ -42,7 +42,7 @@ public class QuestLogAdapter extends RecyclerView.Adapter<QuestLogAdapter.ViewHo
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Quests.scrollTo(getAdapterPosition()+1);
+                    QuestActivity.scrollTo(getAdapterPosition()+1);
                 }
             });
 

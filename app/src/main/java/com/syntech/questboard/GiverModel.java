@@ -1,6 +1,6 @@
 package com.syntech.questboard;
 
-public class Giver {
+public class GiverModel {
 
     private int id;
     private String name;

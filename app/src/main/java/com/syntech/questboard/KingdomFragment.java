@@ -23,7 +23,7 @@ public class KingdomFragment extends android.support.v4.app.Fragment {
     private int population;
     private RecyclerView questList;
     private QuestLogAdapter adapter;
-    private List<Quest> quests;
+    private List<QuestModel> quests;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class KingdomFragment extends android.support.v4.app.Fragment {
         kingdom_img.loadImageUrl(getImage());
         kingdom_population.setText(String.valueOf(getPopulation()));
 
-        quests = Quests.getQuests();
+        quests = QuestActivity.getQuests();
 
         adapter = new QuestLogAdapter(quests);
         questList.setAdapter(adapter);
